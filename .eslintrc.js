@@ -12,8 +12,10 @@ module.exports = {
   settings: {
     'import/resolver': {
       configurable: {
-        Store: './src/store',
-        Containers: './src/containers',
+        '@Store': './src/store',
+        '@Containers': './src/containers',
+        '@Components': './src/components',
+        '@Images': './src/assets/img',
       },
     },
   },

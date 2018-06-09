@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 
-import orders from '../containers/reducers';
+import { reducers as screens } from '@Containers';
 
 const reducers = combineReducers({
-  orders,
+  screens,
 });
 
 export default reducers;

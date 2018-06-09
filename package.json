@@ -10,7 +10,7 @@
     "test:coverage": "jest --coverage",
     "lint": "eslint ./src",
     "lint:fix": "eslint --fix ./src",
-    "css-lint": "stylelint ./src",
+    "css-lint": "stylelint **/*.scss --syntax scss",
     "build:prod": "./node_modules/webpack/bin/webpack.js -p --env production",
     "gh-pages": "./node_modules/.bin/gh-pages -d dist"
   },

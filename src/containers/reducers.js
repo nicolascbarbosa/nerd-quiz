@@ -1,5 +1,11 @@
-import { combineReducers } from "redux";
+import { combineReducers } from 'redux';
 
-const reducers = combineReducers({});
+import { reducers as characters } from './Characters';
+import { reducers as welcome } from './Welcome';
+
+const reducers = combineReducers({
+  characters,
+  welcome,
+});
 
 export default reducers;
