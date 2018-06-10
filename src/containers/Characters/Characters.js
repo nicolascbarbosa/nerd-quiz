@@ -1,12 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Brand, Title, Grid, Container, InputField, Button } from '@Components';
-import { Card, Timer, Pagination, Photo } from './components';
+import { Brand, Title, Grid, Container } from '@Components';
+import { Card, Timer, Pagination, Photo, Form } from './components';
+
+import styles from './Characters.scss';
 
 class Characters extends React.Component {
   static propTypes = {
     fetchCharacters: PropTypes.func.isRequired,
+    handleSubmit: PropTypes.func.isRequired,
     characters: PropTypes.shape({
       results: PropTypes.arrayOf(PropTypes.object),
       count: PropTypes.number,
@@ -15,48 +18,30 @@ class Characters extends React.Component {
     }).isRequired,
   };
 
-  constructor(props) {
-    super(props);
-    this.state = { value: '' };
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
   componentDidMount() {
     this.props.fetchCharacters();
-  }
-
-  handleChange(e) {
-    this.setState({ value: e.target.value });
-  }
-
-  handleSubmit(e) {
-    e.preventDefault();
   }
 
   render() {
     const {
       characters: { results: characters },
+      handleSubmit,
     } = this.props;
     return (
       <Grid backgroundColor="#2A2B30">
         <Container>
-          <Grid>
-            <Brand />
+          <Grid className={styles.header}>
+            <Brand className={styles.brand} />
             <Title text="Nerd Quiz" />
             <Timer onFinish={() => console.log('finish')} />
           </Grid>
           <Grid>
             {characters.map(character => (
-              <Card key={character.name}>
-                <Photo />
-                <Button text="?" />
-                <Button text="..." />
-                <form>
-                  <InputField />
-                </form>
-              </Card>
+              <Card
+                key={character.created}
+                photo={<Photo wordSearch={character.name} />}
+                form={<Form onSubmit={handleSubmit} />}
+              />
             ))}
           </Grid>
           <Grid>

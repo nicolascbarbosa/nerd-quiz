@@ -1,0 +1,12 @@
+@import "app";
+
+.timer {
+  display: flex;
+  align-items: center;
+  color: #fff;
+}
+
+.icon {
+  width: rem(40px);
+  margin-right: rem(20px);
+}

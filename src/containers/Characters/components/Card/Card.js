@@ -1,18 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Card = () => (
-  <figure>
-    <img
-      src="https://br.pinterest.com/pin/391742867578563875/"
-      alt="foto do personagem a ser descoberto"
-    />
-    <figcaption>
-     
-    </figcaption>
+import styles from './Card.scss';
+
+const Card = ({ photo, form }) => (
+  <figure className={styles.card}>
+    {photo}
+    <figcaption className={styles.form}>{form}</figcaption>
   </figure>
 );
 
-Card.propTypes = {};
+Card.propTypes = {
+  photo: PropTypes.node.isRequired,
+  form: PropTypes.node.isRequired,
+};
 
 export default Card;

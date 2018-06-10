@@ -1,0 +1,12 @@
+@import "app";
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  flex: 1;
+  margin: rem(40px) 0;
+}
+
+.btn {
+  background-color: #24252a;
+}

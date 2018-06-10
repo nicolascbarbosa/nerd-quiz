@@ -21,6 +21,7 @@ module.exports = {
       configurable: {
         '@Store': './src/store',
         '@Client': './src/client',
+        '@Utils': './src/utils',
         '@Containers': './src/containers',
         '@Components': './src/components',
         '@Images': './src/assets/img',

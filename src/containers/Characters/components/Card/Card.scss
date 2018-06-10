@@ -1,0 +1,18 @@
+@import "app";
+
+.card {
+  justify-content: center;
+  flex: 0 25%;
+  margin: rem(20px) 0;
+  padding: rem(10px);
+  min-height: rem(350px);
+  background: #24252a;
+  background-clip: content-box;
+  border-radius: rem(5px);
+}
+
+.form {
+  display: flex;
+  justify-content: center;
+  flex: 1;
+}

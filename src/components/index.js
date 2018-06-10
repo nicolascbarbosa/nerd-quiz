@@ -4,3 +4,4 @@ export { default as Modal } from './Modal';
 export { default as Grid } from './Grid';
 export { default as Title } from './Title';
 export { default as Brand } from './Brand';
+export { default as InputField } from './InputField';

@@ -5,9 +5,11 @@ import { isEmpty } from 'lodash';
 
 import { btn } from './Button.scss';
 
-const Button = ({ text, className, to }) =>
+const Button = ({
+  text, className, to, disable,
+}) =>
   (isEmpty(to) ? (
-    <button className={[btn, className].join(' ')} type="button">
+    <button className={[btn, className].join(' ')} type="button" {...disable}>
       {text}
     </button>
   ) : (
@@ -18,11 +20,13 @@ Button.propTypes = {
   text: PropTypes.string.isRequired,
   className: PropTypes.string,
   to: PropTypes.string,
+  disable: PropTypes.bool,
 };
 
 Button.defaultProps = {
   className: '',
   to: '',
+  disable: false,
 };
 
 export default Button;

@@ -1,4 +1,5 @@
 import StarWarsClient from '@Client';
+import CharacterNameFormat from '@Utils';
 
 import { actionTypes as types } from './constants';
 
@@ -23,4 +24,9 @@ export const fetchCharacters = () => (dispatch) => {
   StarWarsClient.Characters.all()
     .then(response => dispatch(fetchCharactersSuccess(response.data())))
     .catch(() => dispatch(fetchCharactersFaill()));
+};
+
+export const handleSubmit = (name, value) => {
+  if (CharacterNameFormat(name) === CharacterNameFormat(value)) {
+  }
 };
