@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Brand, Title, Grid, Container } from '@Components';
-import { Card, Timer, Pagination } from './components';
+import { Brand, Title, Grid, Container, InputField, Button } from '@Components';
+import { Card, Timer, Pagination, Photo } from './components';
 
 class Characters extends React.Component {
   static propTypes = {
@@ -15,8 +15,24 @@ class Characters extends React.Component {
     }).isRequired,
   };
 
+  constructor(props) {
+    super(props);
+    this.state = { value: '' };
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
   componentDidMount() {
     this.props.fetchCharacters();
+  }
+
+  handleChange(e) {
+    this.setState({ value: e.target.value });
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
   }
 
   render() {
@@ -29,9 +45,20 @@ class Characters extends React.Component {
           <Grid>
             <Brand />
             <Title text="Nerd Quiz" />
-            <Timer />
+            <Timer onFinish={() => console.log('finish')} />
           </Grid>
-          <Grid>{characters.map(character => <Card key={character.name} />)}</Grid>
+          <Grid>
+            {characters.map(character => (
+              <Card key={character.name}>
+                <Photo />
+                <Button text="?" />
+                <Button text="..." />
+                <form>
+                  <InputField />
+                </form>
+              </Card>
+            ))}
+          </Grid>
           <Grid>
             <Pagination />
           </Grid>

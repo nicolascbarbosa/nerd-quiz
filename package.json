@@ -59,6 +59,7 @@
   },
   "dependencies": {
     "classnames": "^2.2.5",
+    "google-images": "^2.1.0",
     "lodash": "^4.17.10",
     "mappersmith": "^2.22.2",
     "normalize.css": "^7.0.0",

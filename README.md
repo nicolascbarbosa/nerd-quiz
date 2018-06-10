@@ -32,6 +32,8 @@ $ npm run lint:fix - executar e corrigir erros sobre o diretório ./src
 $ npm run css-lint - executar o lint sobre o arquivos de estilo.
 ```
 
+PS: Por estar usando React 16.3+ o projeto já respeita as novas recomendações de componente `life cycle` como `ComponentWillMount()`, `ComponentWillUpdate()` e `ComponentWillRecivieProps()` depreciados.
+
 ### Prod
 
 ```sh
@@ -39,4 +41,7 @@ $ npm run build:prod = gerar um bundler no dir "dist" para produção
 $ npm run gh-pages = publicar o build gerados no github pages
 ```
 
-**PRONTO**
+**REQUEST`s**
+> 1. O usuário ao entrar na tela de jogo a ``request`` para recuperar a primeira página de personagens é feita. 
+> 2. Enquanto isso as demais `request's` são disparadas em background, a fim de melhorar a experiência do usuário quando necessitar exibir detalhes do personagem.
+> 3. Quando o usuário avança para proxima página, a página atual é armazenada em um objeto na `Store` a fim de evitar uma nova `request` caso o usuário decida voltar as páginas anteriores.
