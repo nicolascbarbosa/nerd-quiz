@@ -1,9 +1,11 @@
-import connect from 'react-redux';
+import { connect } from 'react-redux';
 
-import actionCreators from './actions';
+import * as actionCreators from './actions';
 import Characters from './Characters';
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+  characters: state.screens.characters,
+});
 
 export default connect(
   mapStateToProps,

@@ -13,6 +13,7 @@ module.exports = {
     'import/resolver': {
       configurable: {
         '@Store': './src/store',
+        '@Client': './src/client',
         '@Containers': './src/containers',
         '@Components': './src/components',
         '@Images': './src/assets/img',

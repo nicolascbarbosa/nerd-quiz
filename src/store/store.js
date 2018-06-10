@@ -1,4 +1,5 @@
 import { createStore, compose, applyMiddleware } from 'redux';
+import reduxThunk from 'redux-thunk';
 
 import reducers from './reducers';
 
@@ -9,8 +10,8 @@ const composeEnhancers =
     : compose;
 /* eslint-enable */
 
-const persistedState = global.window.localStorage.getItem('state') || {};
+const persistedState = global.window.localStorage.getItem('store') || {};
 
-const store = createStore(reducers, persistedState, composeEnhancers());
+const store = createStore(reducers, persistedState, composeEnhancers(applyMiddleware(reduxThunk)));
 
 export default store;

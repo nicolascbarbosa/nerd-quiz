@@ -1,1 +1,1 @@
-export * from './StarWars';
+export { default } from './StarWars';

@@ -1,3 +1,9 @@
-export const actionTypes = {};
+export const actionTypes = {
+  FETCH_CHARACTERS: 'FETCH_CHARACTERS',
+  FETCH_CHARACTERS_FAIL: 'FETCH_CHARACTERS_FAIL',
+  FETCH_CHARACTERS_SUCCESS: 'FETCH_CHARACTERS_SUCCESS',
+};
 
-export const INITIAL_STATE = {};
+export const INITIAL_STATE = {
+  results: [],
+};

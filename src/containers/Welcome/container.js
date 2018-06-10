@@ -1,4 +1,4 @@
-import connect from 'react-redux';
+import { connect } from 'react-redux';
 
 import actionCreators from './actions';
 import Welcome from './Welcome';

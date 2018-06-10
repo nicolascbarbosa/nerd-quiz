@@ -1,13 +1,20 @@
-import forge from "mappersmith";
-import EncodeJson from "mappersmith/middleware/encode-json";
+import forge from 'mappersmith';
+import EncodeJson from 'mappersmith/middleware/encode-json';
 
-const OrderClient = forge({
+export default forge({
   middleware: [EncodeJson],
   host: process.env.API_SRC,
 
   resources: {
-    StarWars: {}
-  }
-}).StarWars;
-
-export default OrderClient;
+    Characters: {
+      all: {
+        path: '/people',
+        method: 'GET',
+      },
+      byId: {
+        path: '/people/{id}',
+        method: 'GET',
+      },
+    },
+  },
+});
