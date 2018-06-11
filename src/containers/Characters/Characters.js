@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Brand, Title, Grid, Container, Modal } from '@Components';
 import { CharacterImageName } from '@Utils';
 
-import { Card, Timer, Pagination, Photo, Form, Details } from './components';
+import { Card, Timer, Pagination, Photo, Form, Details, Finish } from './components';
 
 import styles from './Characters.scss';
 
@@ -19,6 +19,7 @@ class Characters extends React.Component {
       count: PropTypes.number,
       next: PropTypes.string,
       previous: PropTypes.string,
+      user: PropTypes.object,
     }).isRequired,
   };
 
@@ -53,7 +54,10 @@ class Characters extends React.Component {
   render() {
     const {
       characters: {
-        previous, next, results: characters, details,
+        previous,
+        next,
+        results: characters,
+        user: { points: totalPoints },
       },
       handleSubmit,
       fetchMorePage,
@@ -68,20 +72,18 @@ class Characters extends React.Component {
             <Timer onFinish={() => this.handleFinishGame()} />
           </Grid>
           <Grid>
-            {characters.map(character => (
-              <React.Fragment>
-                <Card
-                  key={character.created}
-                  photo={<Photo imageName={CharacterImageName(character.url)} />}
-                  form={
-                    <Form
-                      onSubmit={value => handleSubmit(character.name, value)}
-                      showDetails={this.handleShowDetails}
-                    />
-                  }
-                />
-                {character.name}
-              </React.Fragment>
+            {characters.map((character, index) => (
+              <Card
+                key={character.url}
+                answered={character.answered}
+                photo={<Photo imageName={CharacterImageName(character.url)} />}
+                form={
+                  <Form
+                    onSubmit={(value, points) => handleSubmit(character.name, value, points, index)}
+                    showDetails={this.handleShowDetails}
+                  />
+                }
+              />
             ))}
           </Grid>
           <Grid>
@@ -94,7 +96,12 @@ class Characters extends React.Component {
           </Grid>
           {this.state.showDetails && (
             <Modal>
-              <Details details={details} />
+              <Details hideDetails={this.handleShowDetails} />
+            </Modal>
+          )}
+          {this.state.showDetails && (
+            <Modal>
+              <Finish totalPoints={totalPoints} />
             </Modal>
           )}
         </Container>

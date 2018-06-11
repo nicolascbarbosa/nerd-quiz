@@ -14,11 +14,12 @@ class Form extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { value: '', wantToAnswer: false };
+    this.state = { value: '', wantToAnswer: false, points: 10 };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleAnswer = this.handleAnswer.bind(this);
+    this.handleDetails = this.handleDetails.bind(this);
   }
 
   handleChange(e) {
@@ -29,9 +30,9 @@ class Form extends React.Component {
     e.preventDefault();
     const { value } = this.state;
 
-    console.log(value);
     if (value !== '') {
-      this.props.onSubmit(value);
+      this.props.onSubmit(value, this.state.points);
+      this.setState({ points: 10 });
     }
   }
 
@@ -41,10 +42,17 @@ class Form extends React.Component {
     });
   }
 
+  handleDetails() {
+    this.setState({
+      points: 5,
+    });
+    this.props.showDetails();
+  }
+
   render() {
     return (
       <React.Fragment>
-        <Button text="?" onClick={this.props.showDetails} />
+        <Button text="?" onClick={this.handleDetails} />
         <Button
           text="..."
           className={cn({

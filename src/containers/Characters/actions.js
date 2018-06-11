@@ -60,11 +60,21 @@ export const backPage = () => ({
   type: types.BACK_PAGE,
 });
 
-export const handleSubmit = (name, value) => {
+export const handleSubmit = (name, value, points, index) => {
   if (CharacterNameFormat(name) === CharacterNameFormat(value)) {
+    return {
+      type: types.SUBMIT_FORM,
+      payload: {
+        points,
+        index,
+      },
+    };
   }
 
   return {
     type: types.SUBMIT_FORM,
+    payload: {
+      points: 0,
+    },
   };
 };

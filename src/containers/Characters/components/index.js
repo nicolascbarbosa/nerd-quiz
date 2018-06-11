@@ -4,3 +4,4 @@ export { default as Timer } from './Timer';
 export { default as Photo } from './Photo';
 export { default as Form } from './Form';
 export { default as Details } from './Details';
+export { default as Finish } from './Finish';

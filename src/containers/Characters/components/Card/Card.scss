@@ -1,6 +1,7 @@
 @import "app";
 
 .card {
+  position: relative;
   justify-content: center;
   flex: 0 25%;
   margin: rem(20px) 0;
@@ -9,6 +10,19 @@
   background: #24252a;
   background-clip: content-box;
   border-radius: rem(5px);
+
+  &.answered {
+    opacity: .5;
+  }
+
+  &.answered:before {
+    @include pseudo-element();
+    z-index: 1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
 }
 
 .form {

@@ -17,4 +17,7 @@ export const INITIAL_STATE = {
   next: '',
   initCounterCharacther: 0,
   oldPagesData: {},
+  user: {
+    points: 0,
+  },
 };
