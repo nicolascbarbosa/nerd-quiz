@@ -16,5 +16,29 @@ export default forge({
         method: 'GET',
       },
     },
+    Movies: {
+      all: {
+        path: '/films',
+        method: 'GET',
+      },
+    },
+    Planets: {
+      all: {
+        path: '/planets',
+        method: 'GET',
+      },
+    },
+    Vehicles: {
+      all: {
+        path: '/vehicles',
+        method: 'GET',
+      },
+    },
+    Species: {
+      all: {
+        path: '/species',
+        method: 'GET',
+      },
+    },
   },
 });

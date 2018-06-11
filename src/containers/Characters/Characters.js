@@ -11,6 +11,10 @@ import styles from './Characters.scss';
 class Characters extends React.Component {
   static propTypes = {
     fetchCharacters: PropTypes.func.isRequired,
+    fetchVehicles: PropTypes.func.isRequired,
+    fetchMovies: PropTypes.func.isRequired,
+    fetchSpecies: PropTypes.func.isRequired,
+    fetchPlanets: PropTypes.func.isRequired,
     handleSubmit: PropTypes.func.isRequired,
     fetchMorePage: PropTypes.func.isRequired,
     backPage: PropTypes.func.isRequired,
@@ -20,6 +24,18 @@ class Characters extends React.Component {
       next: PropTypes.string,
       previous: PropTypes.string,
       user: PropTypes.object,
+    }).isRequired,
+    movies: PropTypes.shape({
+      results: PropTypes.arrayOf(PropTypes.object),
+    }).isRequired,
+    planets: PropTypes.shape({
+      results: PropTypes.arrayOf(PropTypes.object),
+    }).isRequired,
+    species: PropTypes.shape({
+      results: PropTypes.arrayOf(PropTypes.object),
+    }).isRequired,
+    vehicles: PropTypes.shape({
+      results: PropTypes.arrayOf(PropTypes.object),
     }).isRequired,
   };
 
@@ -37,6 +53,10 @@ class Characters extends React.Component {
 
   componentDidMount() {
     this.props.fetchCharacters();
+    this.props.fetchVehicles();
+    this.props.fetchMovies();
+    this.props.fetchSpecies();
+    this.props.fetchPlanets();
   }
 
   handleShowDetails() {
@@ -53,15 +73,19 @@ class Characters extends React.Component {
 
   render() {
     const {
+      handleSubmit,
+      fetchMorePage,
+      backPage,
       characters: {
         previous,
         next,
         results: characters,
         user: { points: totalPoints },
       },
-      handleSubmit,
-      fetchMorePage,
-      backPage,
+      movies,
+      planets,
+      species,
+      vehicles,
     } = this.props;
     return (
       <Grid backgroundColor="#2A2B30">
@@ -94,9 +118,17 @@ class Characters extends React.Component {
               backPage={backPage}
             />
           </Grid>
-          {this.state.showDetails && (
+          {!this.state.showDetails && (
             <Modal>
-              <Details hideDetails={this.handleShowDetails} />
+              <Details
+                hideDetails={this.handleShowDetails}
+                details={{
+                  movies: movies.results,
+                  planets: planets.results,
+                  species: species.results,
+                  vehicles: vehicles.results,
+                }}
+              />
             </Modal>
           )}
           {this.state.showDetails && (

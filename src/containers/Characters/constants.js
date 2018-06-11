@@ -3,7 +3,21 @@ export const actionTypes = {
   FETCH_CHARACTERS_FAIL: 'FETCH_CHARACTERS_FAIL',
   FETCH_CHARACTERS_SUCCESS: 'FETCH_CHARACTERS_SUCCESS',
 
-  FETCH_CHARACTER_DETAILS: 'FETCH_CHARACTER_DETAILS',
+  FETCH_PLANETS: 'FETCH_PLANETS',
+  FETCH_PLANETS_FAIL: 'FETCH_PLANETS_FAIL',
+  FETCH_PLANETS_SUCCESS: 'FETCH_PLANETS_SUCCESS',
+
+  FETCH_SPECIES: 'FETCH_SPECIES',
+  FETCH_SPECIES_FAIL: 'FETCH_SPECIES_FAIL',
+  FETCH_SPECIES_SUCCESS: 'FETCH_SPECIES_SUCCESS',
+
+  FETCH_MOVIES: 'FETCH_MOVIES',
+  FETCH_MOVIES_FAIL: 'FETCH_MOVIES_FAIL',
+  FETCH_MOVIES_SUCCESS: 'FETCH_MOVIES_SUCCESS',
+
+  FETCH_VEHICLES: 'FETCH_VEHICLES',
+  FETCH_VEHICLES_FAIL: 'FETCH_VEHICLES_FAIL',
+  FETCH_VEHICLES_SUCCESS: 'FETCH_VEHICLES_SUCCESS',
 
   FETCH_CHARACTERS_PAGE: 'FETCH_CHARACTERS_PAGE',
   BACK_PAGE: 'BACK_PAGE',
@@ -12,12 +26,18 @@ export const actionTypes = {
 };
 
 export const INITIAL_STATE = {
-  results: [],
-  previous: '',
-  next: '',
-  initCounterCharacther: 0,
-  oldPagesData: {},
-  user: {
-    points: 0,
+  characters: {
+    results: [],
+    previous: '',
+    next: '',
+    initCounterCharacther: 0,
+    oldPagesData: {},
+    user: {
+      points: 0,
+    },
   },
+  movies: {},
+  planets: {},
+  species: {},
+  vehicles: {},
 };

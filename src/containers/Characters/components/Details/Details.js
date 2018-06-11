@@ -51,7 +51,7 @@ Details.propTypes = {
     url: PropTypes.string,
     height: PropTypes.string,
     hair: PropTypes.string,
-    planet: PropTypes.string,
+    planet: PropTypes.array,
     species: PropTypes.array,
     movies: PropTypes.array,
     vehicles: PropTypes.array,
