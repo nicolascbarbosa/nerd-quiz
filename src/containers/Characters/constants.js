@@ -36,8 +36,16 @@ export const INITIAL_STATE = {
       points: 0,
     },
   },
-  movies: {},
-  planets: {},
-  species: {},
-  vehicles: {},
+  movies: {
+    results: [],
+  },
+  planets: {
+    results: [],
+  },
+  species: {
+    results: [],
+  },
+  vehicles: {
+    results: [],
+  },
 };

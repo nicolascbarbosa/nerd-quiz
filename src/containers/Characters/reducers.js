@@ -1,4 +1,3 @@
-import { merge } from 'lodash';
 import { INITIAL_STATE, actionTypes as types } from './constants';
 
 export default (state = INITIAL_STATE, action) => {
@@ -17,25 +16,36 @@ export default (state = INITIAL_STATE, action) => {
     case types.FETCH_PLANETS_SUCCESS:
       return {
         ...state,
-        planets: merge({}, state.planets, action.payload.data),
+        planets: {
+          ...action.payload.data,
+          results: [...state.planets.results, ...action.payload.data.results],
+        },
       };
 
     case types.FETCH_SPECIES_SUCCESS:
       return {
         ...state,
-        species: merge({}, state.species, action.payload.data),
+        species: {
+          ...action.payload.data,
+          results: [...state.species.results, ...action.payload.data.results],
+        },
       };
 
     case types.FETCH_MOVIES_SUCCESS:
       return {
         ...state,
-        movies: merge({}, state.movies, action.payload.data),
+        movies: {
+          ...action.payload.data,
+          results: [...state.movies.results, ...action.payload.data.results],
+        },
       };
-
     case types.FETCH_VEHICLES_SUCCESS:
       return {
         ...state,
-        vehicles: merge({}, state.vehicles, action.payload.data),
+        vehicles: {
+          ...action.payload.data,
+          results: [...state.vehicles.results, ...action.payload.data.results],
+        },
       };
 
     case types.BACK_PAGE:

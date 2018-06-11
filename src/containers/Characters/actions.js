@@ -10,13 +10,6 @@ const fetchNextPage = (next, success, fail) => dispatch =>
     .then(result => dispatch(success(result)))
     .catch(() => dispatch(fail()));
 
-const fetchPlanetsSuccess = data => ({
-  type: types.FETCH_PLANETS_SUCCESS,
-  payload: {
-    data,
-  },
-});
-
 const fetchPlanetsFail = () => ({
   type: types.FETCH_PLANETS_FAIL,
   payload: {
@@ -24,6 +17,18 @@ const fetchPlanetsFail = () => ({
     message: 'Erro ao obter planetas, por favor tente novamente',
   },
 });
+
+const fetchPlanetsSuccess = data => (dispatch) => {
+  if (!isEmpty(data.next)) {
+    dispatch(fetchNextPage(data.next, fetchNextPage, fetchPlanetsFail));
+  }
+  dispatch({
+    type: types.FETCH_PLANETS_SUCCESS,
+    payload: {
+      data,
+    },
+  });
+};
 
 export const fetchPlanets = () => (dispatch) => {
   dispatch({ type: types.FETCH_PLANETS });
@@ -33,13 +38,6 @@ export const fetchPlanets = () => (dispatch) => {
     .catch(() => dispatch(fetchPlanetsFail()));
 };
 
-const fetchSpeciesSuccess = data => ({
-  type: types.FETCH_SPECIES_SUCCESS,
-  payload: {
-    data,
-  },
-});
-
 const fetchSpeciesFail = () => ({
   type: types.FETCH_SPECIES_FAIL,
   payload: {
@@ -47,6 +45,18 @@ const fetchSpeciesFail = () => ({
     message: 'Erro ao obter especies, por favor tente novamente',
   },
 });
+
+const fetchSpeciesSuccess = data => (dispatch) => {
+  if (!isEmpty(data.next)) {
+    dispatch(fetchNextPage(data.next, fetchSpeciesSuccess, fetchSpeciesFail));
+  }
+  dispatch({
+    type: types.FETCH_SPECIES_SUCCESS,
+    payload: {
+      data,
+    },
+  });
+};
 
 export const fetchSpecies = () => (dispatch) => {
   dispatch({ type: types.FETCH_SPECIES });
@@ -56,13 +66,6 @@ export const fetchSpecies = () => (dispatch) => {
     .catch(() => dispatch(fetchSpeciesFail()));
 };
 
-const fetchMoviesSuccess = data => ({
-  type: types.FETCH_MOVIES_SUCCESS,
-  payload: {
-    data,
-  },
-});
-
 const fetchMoviesFail = () => ({
   type: types.FETCH_MOVIES_FAIL,
   payload: {
@@ -70,6 +73,19 @@ const fetchMoviesFail = () => ({
     message: 'Erro ao obter filmes, por favor tente novamente',
   },
 });
+
+const fetchMoviesSuccess = data => (dispatch) => {
+  if (!isEmpty(data.next)) {
+    dispatch(fetchNextPage(data.next, fetchMoviesSuccess, fetchMoviesFail));
+  }
+
+  dispatch({
+    type: types.FETCH_MOVIES_SUCCESS,
+    payload: {
+      data,
+    },
+  });
+};
 
 export const fetchMovies = () => (dispatch) => {
   dispatch({ type: types.FETCH_MOVIES });
@@ -79,13 +95,6 @@ export const fetchMovies = () => (dispatch) => {
     .catch(() => dispatch(fetchMoviesFail()));
 };
 
-const fetchVehiclesSuccess = data => ({
-  type: types.FETCH_VEHICLES_SUCCESS,
-  payload: {
-    data,
-  },
-});
-
 const fetchVehiclesFail = () => ({
   type: types.FETCH_VEHICLES_FAIL,
   payload: {
@@ -93,6 +102,19 @@ const fetchVehiclesFail = () => ({
     message: 'Erro ao obter filmes, por favor tente novamente',
   },
 });
+
+const fetchVehiclesSuccess = data => (dispatch) => {
+  if (!isEmpty(data.next)) {
+    dispatch(fetchNextPage(data.next, fetchVehiclesSuccess, fetchVehiclesFail));
+  }
+
+  dispatch({
+    type: types.FETCH_VEHICLES_SUCCESS,
+    payload: {
+      data,
+    },
+  });
+};
 
 export const fetchVehicles = () => (dispatch) => {
   dispatch({ type: types.FETCH_VEHICLES });
