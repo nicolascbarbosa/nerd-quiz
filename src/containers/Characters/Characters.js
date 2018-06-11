@@ -136,7 +136,7 @@ class Characters extends React.Component {
           )}
           {this.state.finishGame && (
             <Modal>
-              <Finish totalPoints={totalPoints} />
+              <Finish totalPoints={totalPoints} hideFinish={this.handleFinishGame} />
             </Modal>
           )}
         </Container>

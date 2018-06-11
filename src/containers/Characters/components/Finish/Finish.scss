@@ -1,0 +1,20 @@
+@import "app";
+
+.finish {
+  position: relative;
+  padding: rem(15px);
+}
+
+.title {
+  text-align: center;
+}
+
+.btnClose {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+
+.points {
+  text-align: center;
+}

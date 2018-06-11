@@ -1,0 +1,39 @@
+@import "app";
+
+.details {
+  position: relative;
+  padding: rem(15px);
+}
+
+.title {
+  text-align: center;
+}
+
+.btnClose {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+
+.thumb {
+  img {
+    margin: 0;
+  }
+}
+
+.about {
+  display: flex;  
+}
+
+.list {
+  @extend %listUnstyled;
+  padding-left: rem(50px);
+}
+
+.listItem {
+  margin-bottom: rem(15px);
+}
+
+.label {
+  font-weight: bold;
+}

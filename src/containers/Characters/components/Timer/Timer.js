@@ -19,7 +19,7 @@ class Timer extends React.Component {
   }
 
   componentDidMount() {
-    let timer = 5 * 2;
+    let timer = 60 * 2;
     this.timer = setInterval(() => {
       let minutes = parseInt(timer / 60, 10);
       let seconds = parseInt(timer % 60, 10);
