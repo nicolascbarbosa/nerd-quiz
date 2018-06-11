@@ -5,8 +5,11 @@ export default (state = INITIAL_STATE, action) => {
     case types.FETCH_CHARACTERS_SUCCESS:
       return {
         ...action.payload.data,
-        oldPagesData: state.oldPagesData.push(state.results),
+        oldPagesData: state,
       };
+
+    case types.BACK_PAGE:
+      return state.oldPagesData;
     default:
       return state;
   }

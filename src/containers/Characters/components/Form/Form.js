@@ -29,7 +29,8 @@ class Form extends React.Component {
     e.preventDefault();
     const { value } = this.state;
 
-    if (!value) {
+    console.log(value);
+    if (value !== '') {
       this.props.onSubmit(value);
     }
   }

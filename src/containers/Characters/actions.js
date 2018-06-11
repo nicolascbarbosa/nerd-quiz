@@ -1,9 +1,9 @@
 import StarWarsClient from '@Client';
-import CharacterNameFormat from '@Utils';
+import { CharacterNameFormat } from '@Utils';
 
 import { actionTypes as types } from './constants';
 
-const fetchFilms = films => films.map(film => fetch(film));
+const fetchFilms = films => films.map(film => fetch(film).then(response => response.json()));
 
 const fetchHomeWorld = homeworld => fetch(homeworld);
 
@@ -17,8 +17,7 @@ const fetchCharacterDetails = data => (dispatch) => {
   dispatch({ type: types.FETCH_CHARACTER_DETAILS });
 
   data.results.forEach((character) => {
-    console.log(fetchFilms(character.films))
-    global.Promisse.all(fetchFilms(character.films)).then(() => console.log('oe'));
+    console.log(fetchFilms(character.films));
   });
 };
 
@@ -29,7 +28,7 @@ const fetchCharactersSuccess = data => (dispatch) => {
       data,
     },
   });
-  dispatch(fetchCharacterDetails(data));
+  // dispatch(fetchCharacterDetails(data));
 };
 
 const fetchCharactersFail = () => ({
@@ -48,7 +47,24 @@ export const fetchCharacters = () => (dispatch) => {
     .catch(() => dispatch(fetchCharactersFail()));
 };
 
+export const fetchMorePage = url => (dispatch) => {
+  dispatch({ type: types.FETCH_CHARACTERS_PAGE });
+
+  return fetch(url)
+    .then(response => response.json())
+    .then(result => dispatch(fetchCharactersSuccess(result)))
+    .catch(() => dispatch(fetchCharactersFail()));
+};
+
+export const backPage = () => ({
+  type: types.BACK_PAGE,
+});
+
 export const handleSubmit = (name, value) => {
   if (CharacterNameFormat(name) === CharacterNameFormat(value)) {
   }
+
+  return {
+    type: types.SUBMIT_FORM,
+  };
 };
