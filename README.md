@@ -55,3 +55,5 @@ $ npm run gh-pages = publicar o build gerados no github pages
 * Na tela inicial implementar uma `selectbox` que permita o usuário escolher com qual universo ele vai jogar (adicionar Marvel Comics e Dc Comics)
 
 * Implementar a listagem de cards de acordo com o universo selecionado. API: http://superheroapi.com/index.html
+
+* Implementar suíte de testes, para fins de demonstração, segue algumas implementações de outro projeto com React/Redux `https://github.com/nicolascbarbosa/we-tasks/tree/master/__tests__`
