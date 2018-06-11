@@ -1,0 +1,33 @@
+@import "app";
+
+:global(.modalVisible) {
+  .overlay {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+.overlay {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.3s;
+}
+
+.content {
+  position: relative;
+  top: 50%;
+  margin: auto;
+  width: 60%;
+  min-height: 300px;
+  border-radius: rem(5px);
+  background-color: #fff;
+  transform: translateY(-50%);
+}

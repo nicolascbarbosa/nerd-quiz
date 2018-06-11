@@ -1,17 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { isEmpty } from 'lodash';
 
 import { Button } from '@Components';
 
 import styles from './Pagination.scss';
 
-const Pagination = () => (
+const Pagination = ({ previous, next }) => (
   <div className={styles.pagination}>
-    <Button className={styles.btn} text="< Anterior" />
-    <Button className={styles.btn} text="Próxima >" />
+    <Button className={styles.btn} text="< Anterior" disabled={isEmpty(previous)} />
+    <Button className={styles.btn} text="Próxima >" disabled={isEmpty(next)} />
   </div>
 );
 
-Pagination.propTypes = {};
+Pagination.propTypes = {
+  previous: PropTypes.string,
+  next: PropTypes.string,
+};
+
+Pagination.defaultProps = {
+  previous: '',
+  next: '',
+};
 
 export default Pagination;

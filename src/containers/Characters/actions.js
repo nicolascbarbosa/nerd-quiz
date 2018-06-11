@@ -3,14 +3,36 @@ import CharacterNameFormat from '@Utils';
 
 import { actionTypes as types } from './constants';
 
-const fetchCharactersSuccess = data => ({
-  type: types.FETCH_CHARACTERS_SUCCESS,
-  payload: {
-    data,
-  },
-});
+const fetchFilms = films => films.map(film => fetch(film));
 
-const fetchCharactersFaill = () => ({
+const fetchHomeWorld = homeworld => fetch(homeworld);
+
+const fetchSpecies = species => species.map(specie => fetch(specie));
+
+const fetchStarships = starships => starships.map(starship => fetch(starship));
+
+const fetchVehicles = vehicles => vehicles.map(vehicle => fetch(vehicle));
+
+const fetchCharacterDetails = data => (dispatch) => {
+  dispatch({ type: types.FETCH_CHARACTER_DETAILS });
+
+  data.results.forEach((character) => {
+    console.log(fetchFilms(character.films))
+    global.Promisse.all(fetchFilms(character.films)).then(() => console.log('oe'));
+  });
+};
+
+const fetchCharactersSuccess = data => (dispatch) => {
+  dispatch({
+    type: types.FETCH_CHARACTERS_SUCCESS,
+    payload: {
+      data,
+    },
+  });
+  dispatch(fetchCharacterDetails(data));
+};
+
+const fetchCharactersFail = () => ({
   type: types.FETCH_CHARACTERS_FAIL,
   payload: {
     title: 'Opsss',
@@ -23,7 +45,7 @@ export const fetchCharacters = () => (dispatch) => {
 
   StarWarsClient.Characters.all()
     .then(response => dispatch(fetchCharactersSuccess(response.data())))
-    .catch(() => dispatch(fetchCharactersFaill()));
+    .catch(() => dispatch(fetchCharactersFail()));
 };
 
 export const handleSubmit = (name, value) => {

@@ -2,31 +2,48 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { isEmpty } from 'lodash';
+import cn from 'classnames';
 
-import { btn } from './Button.scss';
+import styles from './Button.scss';
 
 const Button = ({
-  text, className, to, disable,
+  text, className, to, disabled, onClick,
 }) =>
   (isEmpty(to) ? (
-    <button className={[btn, className].join(' ')} type="button" {...disable}>
+    <button
+      className={cn(styles.btn, className, {
+        [styles.disabled]: !!disabled,
+      })}
+      type="button"
+      disabled={disabled}
+      onClick={onClick}
+    >
       {text}
     </button>
   ) : (
-    <Link to={to}>{text}</Link>
+    <Link
+      className={cn(styles.btn, className, {
+        [styles.disabled]: !!disabled,
+      })}
+      to={to}
+    >
+      {text}
+    </Link>
   ));
 
 Button.propTypes = {
   text: PropTypes.string.isRequired,
+  onClick: PropTypes.func,
   className: PropTypes.string,
   to: PropTypes.string,
-  disable: PropTypes.bool,
+  disabled: PropTypes.bool,
 };
 
 Button.defaultProps = {
+  onClick: null,
   className: '',
   to: '',
-  disable: false,
+  disabled: false,
 };
 
 export default Button;

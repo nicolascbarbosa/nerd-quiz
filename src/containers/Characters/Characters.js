@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Brand, Title, Grid, Container } from '@Components';
-import { Card, Timer, Pagination, Photo, Form } from './components';
+import { Brand, Title, Grid, Container, Modal } from '@Components';
+import { Card, Timer, Pagination, Photo, Form, Details } from './components';
 
 import styles from './Characters.scss';
 
@@ -18,13 +18,39 @@ class Characters extends React.Component {
     }).isRequired,
   };
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      showDetails: false,
+      finishGame: false,
+    };
+
+    this.handleShowDetails = this.handleShowDetails.bind(this);
+    this.handleFinishGame = this.handleFinishGame.bind(this);
+  }
+
   componentDidMount() {
     this.props.fetchCharacters();
   }
 
+  handleShowDetails() {
+    this.setState({
+      showDetails: !this.state.showDetails,
+    });
+  }
+
+  handleFinishGame() {
+    this.setState({
+      finishGame: !this.state.finishGame,
+    });
+  }
+
   render() {
     const {
-      characters: { results: characters },
+      characters: {
+        previous, next, results: characters, details,
+      },
       handleSubmit,
     } = this.props;
     return (
@@ -33,20 +59,25 @@ class Characters extends React.Component {
           <Grid className={styles.header}>
             <Brand className={styles.brand} />
             <Title text="Nerd Quiz" />
-            <Timer onFinish={() => console.log('finish')} />
+            <Timer onFinish={() => this.handleFinishGame()} />
           </Grid>
           <Grid>
             {characters.map(character => (
               <Card
                 key={character.created}
                 photo={<Photo wordSearch={character.name} />}
-                form={<Form onSubmit={handleSubmit} />}
+                form={<Form onSubmit={handleSubmit} showDetails={this.handleShowDetails} />}
               />
             ))}
           </Grid>
           <Grid>
-            <Pagination />
+            <Pagination previous={previous} next={next} />
           </Grid>
+          {this.state.showDetails && (
+            <Modal>
+              <Details details={details} />
+            </Modal>
+          )}
         </Container>
       </Grid>
     );

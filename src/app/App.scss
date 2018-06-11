@@ -17,6 +17,12 @@ body {
   font-size: 16px;
 }
 
+:global {
+  .modalVisible {
+    overflow: hidden !important;
+  }
+}
+
 img {
   display: block;
   height: auto;

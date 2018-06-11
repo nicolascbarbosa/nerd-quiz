@@ -2,7 +2,6 @@
 
 .btn {
   @extend %buttonsUnstyled;
-  cursor: pointer;
   border-radius: rem(2px);
   padding: rem(12px) rem(20px);
   background-color: #2c2d34;
@@ -12,8 +11,17 @@
   color: #fff;
   transition: all 0.2s;
 
-  &:hover {
+  &:not(.disabled) {
+    cursor: pointer;
+  }
+
+  &:not(.disabled):hover {
+    text-decoration: none;    
     background-color: #5c5edc;
+  }
+
+  &.disabled {
+    opacity: 0.7;
   }
 
   & + .btn {

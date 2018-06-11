@@ -1,11 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import cn from 'classnames';
 
 import { InputField, Button } from '@Components';
+
+import styles from './Form.scss';
 
 class Form extends React.Component {
   static propTypes = {
     onSubmit: PropTypes.func.isRequired,
+    showDetails: PropTypes.func.isRequired,
   };
 
   constructor(props) {
@@ -22,29 +26,42 @@ class Form extends React.Component {
   }
 
   handleSubmit(e) {
+    e.preventDefault();
     const { value } = this.state;
 
     if (!value) {
-      e.preventDefault();
       this.props.onSubmit(value);
     }
   }
 
   handleAnswer() {
     this.setState({
-      wantToAnswer: true,
+      wantToAnswer: !this.state.wantToAnswer,
     });
   }
 
   render() {
     return (
       <React.Fragment>
-        <Button text="?" />
-        <Button text="..." onClick={() => this.handleAnswer()} />
+        <Button text="?" onClick={this.props.showDetails} />
+        <Button
+          text="..."
+          className={cn({
+            [styles.btnActive]: !!this.state.wantToAnswer,
+          })}
+          onClick={this.handleAnswer}
+        />
+
         {this.state.wantToAnswer && (
-          <form onSubmit={this.handleSubmit}>
-            <InputField />
-          </form>
+          <div className={styles.formBox}>
+            <form onSubmit={this.handleSubmit}>
+              <InputField
+                onChange={this.handleChange}
+                value={this.state.value}
+                placeholder="Digite o nome do personagem"
+              />
+            </form>
+          </div>
         )}
       </React.Fragment>
     );
