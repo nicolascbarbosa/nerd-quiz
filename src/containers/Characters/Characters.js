@@ -45,6 +45,7 @@ class Characters extends React.Component {
     this.state = {
       showDetails: false,
       finishGame: false,
+      helpedInfo: {},
     };
 
     this.handleShowDetails = this.handleShowDetails.bind(this);
@@ -59,9 +60,10 @@ class Characters extends React.Component {
     this.props.fetchPlanets();
   }
 
-  handleShowDetails() {
+  handleShowDetails(character = {}) {
     this.setState({
       showDetails: !this.state.showDetails,
+      helpedInfo: character,
     });
   }
 
@@ -104,7 +106,7 @@ class Characters extends React.Component {
                 form={
                   <Form
                     onSubmit={(value, points) => handleSubmit(character.name, value, points, index)}
-                    showDetails={this.handleShowDetails}
+                    showDetails={() => this.handleShowDetails(character)}
                   />
                 }
               />
@@ -118,11 +120,12 @@ class Characters extends React.Component {
               backPage={backPage}
             />
           </Grid>
-          {!this.state.showDetails && (
+          {this.state.showDetails && (
             <Modal>
               <Details
                 hideDetails={this.handleShowDetails}
                 details={{
+                  character: this.state.helpedInfo,
                   movies: movies.results,
                   planets: planets.results,
                   species: species.results,
@@ -131,7 +134,7 @@ class Characters extends React.Component {
               />
             </Modal>
           )}
-          {this.state.showDetails && (
+          {this.state.finishGame && (
             <Modal>
               <Finish totalPoints={totalPoints} />
             </Modal>

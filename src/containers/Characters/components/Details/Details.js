@@ -10,10 +10,11 @@ import styles from './Details.scss';
 
 const Details = ({ hideDetails, details }) => (
   <div className={styles.details}>
+    {console.log(details)}
     <Title text="Detalhes do Personagem" />
     <Button text="X" onClick={hideDetails} />
 
-    <div className={styles.about}>
+    {/* <div className={styles.about}>
       <Photo imageName={CharacterImageName(details.url)} />
       <ul className={styles.list}>
         <li className={styles.listItem}>
@@ -41,16 +42,14 @@ const Details = ({ hideDetails, details }) => (
           {details.vehicles.map(vehicle => vehicle).join(' ')}
         </li>
       </ul>
-    </div>
+    </div> */}
   </div>
 );
 
 Details.propTypes = {
   hideDetails: PropTypes.func.isRequired,
   details: PropTypes.shape({
-    url: PropTypes.string,
-    height: PropTypes.string,
-    hair: PropTypes.string,
+    character: PropTypes.object,
     planet: PropTypes.array,
     species: PropTypes.array,
     movies: PropTypes.array,
