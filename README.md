@@ -33,7 +33,8 @@ Instale as dependencias e as devDepencias e inicie o server
 $ git clone https://github.com/nicolascbarbosa/nerd-quiz.git
 $ cd nerd-quiz
 $ npm install
-$ npm start - para ficar levantar um servidor na porta "8001" e observar mudanças
+$ renomear/criar o .env.example para .env e .env.production em caso de produção
+$ npm start - para levantar um servidor na porta "8001" e observar mudanças
 $ npm test - executar testes
 $ npm run test:watch - executar e observar os testes
 $ npm run test:coverage - executar teste e obter o coverage
